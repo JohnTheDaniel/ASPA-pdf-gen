@@ -35,7 +35,7 @@ def delete_DS_store():
 
 def get_texts():
     texts = []
-    f = open('texter.csv', 'r')
+    f = open('texter.csv', 'r', encoding='utf-8')
 
     tuple_list = []
     # Get all the lines
@@ -132,7 +132,7 @@ def create_pdf(filename, top_text, imagepath, bottom_text, borders = False):
         margin = 10*mm
         x = width-logo_size - margin
         y = margin
-        c.drawImage(logo, x, y, logo_size, logo_size)
+        c.drawImage(logo, x, y, logo_size, logo_size, mask='auto')
     def draw_image(c,path):
         def get_center_x_coord(image_width):
             return (width - image_width)/2
@@ -212,7 +212,7 @@ def generate_all_the_things():
         top_text, bottom_text = tuple_texts[i]
         image_path = image_names[i]
         print("Arbetar på bild " + image_path + " med texten \"" + top_text + "\"" )
-        filename = "output/" + str(i) + ".pdf" # "output/" + top_text + ".pdf"
+        filename = "output/" + str(i+1) + ".pdf" # "output/" + top_text + ".pdf"
         create_pdf(filename,top_text,image_path, bottom_text)
         print("Klar med " + filename)
         procent = i/len(tuple_texts) * 100
